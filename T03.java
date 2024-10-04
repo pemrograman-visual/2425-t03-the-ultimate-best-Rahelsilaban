@@ -12,6 +12,7 @@ public class T03 {
         double minimummargin, rating, harga, diskon;
         int stok;
 
+        kategori = "";
         do {
             iSBN = input.nextLine();
             if (iSBN.equals("---")) {
@@ -20,16 +21,21 @@ public class T03 {
                 penulis = input.nextLine();
                 tahunterbit = input.nextLine();
                 penerbit = input.nextLine();
+                if (penerbit.equals("---")) {
+                    penerbit = "---";
+                } else {
+                    penerbit = penerbit;
+                }
                 format = input.nextLine();
                 harga = Double.parseDouble(input.nextLine());
                 minimummargin = Double.parseDouble(input.nextLine());
                 if (minimummargin > 0) {
                     kategoridiskon = "---";
                 } else {
-                    if (minimummargin < -(harga * 40 / 100)) {
+                    if (minimummargin < -(harga * 0.4)) {
                         kategoridiskon = "Once in a lifetime";
                     } else {
-                        if (minimummargin < -(harga * 20 / 100)) {
+                        if (minimummargin < -(harga * 0.2)) {
                             kategoridiskon = "Never come twice";
                         } else {
                             kategoridiskon = "No regret";
