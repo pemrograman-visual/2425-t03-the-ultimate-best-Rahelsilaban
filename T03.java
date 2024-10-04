@@ -8,9 +8,9 @@ public class T03 {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String iSBN, judul, penulis, penerbit, format, kategori, tub, diskon;
-        int tahun, stok;
-        double harga, margin, rating, kategoridiskon;
+        String iSBN, judul, penulis, penerbit, format, tahun, kategori, tub, diskon;
+        int stok;
+        double harga, margin, rating1, kategoridiskon;
 
         do {
             iSBN = input.nextLine();
@@ -18,26 +18,26 @@ public class T03 {
             } else {
                 judul = input.nextLine();
                 penulis = input.nextLine();
-                tahun = Integer.parseInt(input.nextLine());
+                tahun = input.nextLine();
                 penerbit = input.nextLine();
                 format = input.nextLine();
                 harga = Double.parseDouble(input.nextLine());
                 margin = Double.parseDouble(input.nextLine());
                 stok = Integer.parseInt(input.nextLine());
-                rating = Double.parseDouble(input.nextLine());
-                if (rating >= 4.7) {
+                rating1 = Double.parseDouble(input.nextLine());
+                if (rating1 >= 4.7) {
                     kategori = "Best Pick";
                 } else {
-                    if (rating >= 4.5 && rating < 4.7) {
+                    if (rating1 >= 4.5 && rating1 < 4.7) {
                         kategori = "Must Read";
                     } else {
-                        if (rating >= 4.0 && rating < 4.5) {
+                        if (rating1 >= 4.0 && rating1 < 4.5) {
                             kategori = "Recommended";
                         } else {
-                            if (rating >= 3.0 && rating < 4.0) {
+                            if (rating1 >= 3.0 && rating1 < 4.0) {
                                 kategori = "Average";
                             } else {
-                                if (rating < 3.0) {
+                                if (rating1 < 3.0) {
                                     kategori = "Low";
                                 } else {
                                     kategori = "";
@@ -65,7 +65,7 @@ public class T03 {
                 } else {
                     tub = "---";
                 }
-                System.out.println(iSBN + "|" + judul + "|" + penulis + "|" + tahun + "|" + penerbit + "|" + format + "|" + toFixed(harga,2) + "|" + toFixed(margin,2) + "|" + stok + "|" + toFixed(rating,1) + "|" + kategori + "|" + diskon + "|" + tub);
+                System.out.println(iSBN + "|" + judul + "|" + penulis + "|" + tahun + "|" + penerbit + "|" + format + "|" + toFixed(harga,2) + "|" + toFixed(margin,2) + "|" + stok + "|" + toFixed(rating1,1) + "|" + kategori + "|" + diskon + "|" + tub);
             }
         } while (!iSBN.equals("---"));
     }
