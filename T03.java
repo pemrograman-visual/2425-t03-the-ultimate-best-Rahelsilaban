@@ -8,69 +8,61 @@ public class T03 {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String iSBN, judul, penulis, penerbit, format, tahun, kategori, tub, diskon;
         int stok;
-        double harga, margin, rating1, kategoridiskon;
+        String judul, penulis, penerbit, formatbukuelektronik, iSBN, kategori, tahunterbit, jenisdiskon, conclusion;
+        double hargapembelian, minimummargin, rating;
 
-        do {
-            iSBN = input.nextLine();
-            if (iSBN.equals("---")) {
+        iSBN = input.nextLine();
+        while (!iSBN.equals("---")) {
+            judul = input.nextLine();
+            penulis = input.nextLine();
+            tahunterbit = input.nextLine();
+            formatbukuelektronik = input.nextLine();
+            hargapembelian = Double.parseDouble(input.nextLine());
+            minimummargin = Double.parseDouble(input.nextLine());
+            if (-(minimummargin / hargapembelian) > 0.4) {
+                jenisdiskon = "Once in a lifetime";
             } else {
-                judul = input.nextLine();
-                penulis = input.nextLine();
-                tahun = input.nextLine();
-                penerbit = input.nextLine();
-                format = input.nextLine();
-                harga = Double.parseDouble(input.nextLine());
-                margin = Double.parseDouble(input.nextLine());
-                stok = Integer.parseInt(input.nextLine());
-                rating1 = Double.parseDouble(input.nextLine());
-                if (rating1 >= 4.7) {
-                    kategori = "Best Pick";
+                if (0.2 < -(minimummargin / hargapembelian) && minimummargin / hargapembelian < 0.4) {
+                    jenisdiskon = "Never come twice";
                 } else {
-                    if (rating1 >= 4.5 && rating1 < 4.7) {
-                        kategori = "Must Read";
+                    if (-(minimummargin / hargapembelian) <= 0.2 && -(minimummargin / hargapembelian) > 0) {
+                        jenisdiskon = "No regret";
                     } else {
-                        if (rating1 >= 4.0 && rating1 < 4.5) {
-                            kategori = "Recommended";
+                        jenisdiskon = "---";
+                    }
+                }
+            }
+            stok = Integer.parseInt(input.nextLine());
+            rating = Double.parseDouble(input.nextLine());
+            if (rating >= 4.7) {
+                kategori = "Best pick";
+            } else {
+                if (rating >= 4.5 && rating < 4.7) {
+                    kategori = "Must read";
+                } else {
+                    if (rating >= 4.0 && rating < 4.5) {
+                        kategori = "Recommended";
+                    } else {
+                        if (rating > 3.0 && rating < 4.0) {
+                            kategori = "Average";
                         } else {
-                            if (rating1 >= 3.0 && rating1 < 4.0) {
-                                kategori = "Average";
+                            if (rating < 3.0) {
+                                kategori = "Low";
                             } else {
-                                if (rating1 < 3.0) {
-                                    kategori = "Low";
-                                } else {
-                                    kategori = "";
-                                }
+                                kategori = "Low";
                             }
                         }
                     }
                 }
             }
-            kategoridiskon = margin / harga * -1;
-            if (kategoridiskon >= (double) 40 / 100) {
-                diskon = "Once in a lifetime";
+            if (jenisdiskon.equals("Once in a lifetime") && kategori.equals("Best pick")) {
+                conclusion = "The ultimate best";
             } else {
-                if (kategoridiskon > (double) 20 / 100) {
-                    diskon = "Never come twice";
-                } else {
-                    if (kategoridiskon > 0) {
-                        diskon = "No regret";
-                    } else {
-                        diskon = "---";
-                    }
-                }
-                if (kategori.equals("Best Pick") && diskon.equals("Once in a lifetime")) {
-                    tub = "The ultimate best";
-                } else {
-                    tub = "---";
-                }
-                System.out.println(iSBN + "|" + judul + "|" + penulis + "|" + tahun + "|" + penerbit + "|" + format + "|" + toFixed(harga,2) + "|" + toFixed(margin,2) + "|" + stok + "|" + toFixed(rating1,1) + "|" + kategori + "|" + diskon + "|" + tub);
+                conclusion = "---";
             }
-        } while (!iSBN.equals("---"));
-    }
-    
-    private static String toFixed(double value, int digits) {
-        return String.format("%." + digits + "f", value);
+            System.out.println(iSBN + "|" + judul + "|" + penulis + "|" + tahunterbit + "|" + penerbit + "|" + formatbukuelektronik + "|" + hargapembelian + "|" + minimummargin + "|" + stok + "|" + rating + "|" + kategori + "|" + jenisdiskon + "|" + conclusion);
+            iSBN = input.nextLine();
+        }
     }
 }
