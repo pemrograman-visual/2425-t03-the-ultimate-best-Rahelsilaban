@@ -65,7 +65,7 @@ public class T03 {
                 } else {
                     tub = "---";
                 }
-                System.out.println(iSBN + "|" + judul + "|" + penulis + "|" + tahun + "|" + penerbit + "|" + format + "|" + harga + "|" + margin + "|" + stok + "|" + toFixed(rating,1) + "|" + kategori + "|" + tub + "|" + diskon);
+                System.out.println(iSBN + "|" + judul + "|" + penulis + "|" + tahun + "|" + penerbit + "|" + format + "|" + toFixed(harga,2) + "|" + toFixed(margin,2) + "|" + stok + "|" + toFixed(rating,1) + "|" + kategori + "|" + diskon + "|" + tub);
             }
         } while (!iSBN.equals("---"));
     }
