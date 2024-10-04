@@ -4,13 +4,13 @@
 import java.util.*;
 import java.lang.Math;
 
-public class T03{
+public class T03 {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String iSBN, judul, penulis, penerbit, format, kategori, tub, diskon, kategoridiskon;
+        String iSBN, judul, penulis, penerbit, format, kategori, tub, diskon;
         int tahun, stok;
-        double harga, margin, rating;
+        double harga, margin, rating, kategoridiskon;
 
         do {
             iSBN = input.nextLine();
@@ -37,26 +37,37 @@ public class T03{
                             if (rating >= 3.0 && rating < 4.0) {
                                 kategori = "Average";
                             } else {
-                                kategori = "Low";
+                                if (rating < 3.0) {
+                                    kategori = "Low";
+                                } else {
+                                    kategori = "";
+                                }
                             }
                         }
                     }
                 }
             }
-            kategoridiskon = margin / harga(-1);
+            kategoridiskon = margin / harga * -1;
             if (kategoridiskon >= (double) 40 / 100) {
-                kategoridiskon = "Once in a lifetime";
+                diskon = "Once in a lifetime";
             } else {
-                if (kategoridiskon >= (double) 20 / 100) {
-                    kategoridiskon = "Never come twice";
+                if (kategoridiskon > (double) 20 / 100) {
+                    diskon = "Never come twice";
                 } else {
                     if (kategoridiskon > 0) {
-                        kategoridiskon = "No regret";
+                        diskon = "No regret";
+                    } else {
+                        diskon = "---";
                     }
                 }
+                if (kategori.equals("Best Pick") && diskon.equals("Once in a lifetime")) {
+                    tub = "The ultimate best";
+                } else {
+                    tub = "---";
+                }
+                System.out.println(iSBN + "|" + judul + "|" + penulis + "|" + tahun + "|" + penerbit + "|" + format + "|" + harga + "|" + margin + "|" + stok + "|" + toFixed(rating,1) + "|" + kategori + "|" + tub + "|" + diskon);
             }
         } while (!iSBN.equals("---"));
-        System.out.println(iSBN + "|" + judul + "|" + penulis + "|" + tahun + "|" + penerbit + "|" + format + "|" + harga + "|" + margin + "|" + stok + "|" + toFixed(rating,1) + "|" + kategori + "|" + tub + "|" + diskon);
     }
     
     private static String toFixed(double value, int digits) {
